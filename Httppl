@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRADER COLLINS| Professional Deriv Bot Builder</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              black: '#07080b',
+              surface: '#0f1117',
+              card: '#141822',
+              border: '#1f2636',
+              green: '#00e599',
+              greenHover: '#00c784',
+              greenGlow: 'rgba(0, 229, 153, 0.25)'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Neon Glow & Custom Scrollbar */
+    .glow-green {
+      box-shadow: 0 0 25px rgba(0, 229, 153, 0.35);
+    }
+    .glow-card:hover {
+      box-shadow: 0 0 30px rgba(0, 229, 153, 0.15);
+      border-color: rgba(0, 229, 153, 0.5);
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #07080b;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1f2636;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00e599;
+    }
+  </style>
+</head>
+<body class="bg-brand-black text-slate-100 font-sans selection:bg-brand-green selection:text-black">
+
+  <!-- ================= NAVBAR ================= -->
+  <nav class="fixed top-0 left-0 w-full z-50 bg-brand-black/80 backdrop-blur-md border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-brand-green/10 border border-brand-green/40 flex items-center justify-center text-brand-green text-xl shadow-[0_0_15px_rgba(0,229,153,0.3)]">
+          <i class="fa-solid fa-money-bill-trend-up"></i>
+        </div>
+        <span class="text-xl font-extrabold tracking-tight">
+          DOLLAR<span class="text-brand-green">PRINTER</span>
+        </span>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-300">
+        <a href="#features" class="hover:text-brand-green transition">Features</a>
+        <a href="#live-results" class="hover:text-brand-green transition flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-brand-green animate-ping"></span> Live Trades
+        </a>
+        <a href="#pricing" class="hover:text-brand-green transition">Pricing</a>
+        <a href="#testimonials" class="hover:text-brand-green transition">Reviews</a>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="hidden sm:flex items-center gap-3">
+        <a href="#connect" class="px-5 py-2.5 rounded-lg border border-brand-border bg-brand-surface hover:bg-brand-border text-sm font-semibold transition">
+          Log In
+        </a>
+        <a href="#connect" class="px-5 py-2.5 rounded-lg bg-brand-green text-black text-sm font-bold hover:bg-brand-greenHover glow-green transition flex items-center gap-2">
+          <i class="fa-solid fa-link text-xs"></i> Connect Deriv
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="md:hidden text-2xl text-slate-300 hover:text-brand-green">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobileMenu" class="hidden md:hidden bg-brand-surface border-b border-brand-border px-6 py-6 space-y-4">
+      <a href="#features" class="block text-slate-300 hover:text-brand-green font-medium">Features</a>
+      <a href="#live-results" class="block text-slate-300 hover:text-brand-green font-medium">Live Trades</a>
+      <a href="#pricing" class="block text-slate-300 hover:text-brand-green font-medium">Pricing</a>
+      <a href="#testimonials" class="block text-slate-300 hover:text-brand-green font-medium">Reviews</a>
+      <div class="pt-4 flex flex-col gap-3">
+        <button class="w-full py-2.5 border border-brand-border rounded-lg text-sm font-semibold">Log In</button>
+        <button class="w-full py-2.5 bg-brand-green text-black rounded-lg text-sm font-bold glow-green">Connect Deriv Account</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================= HERO SECTION ================= -->
+  <section class="relative pt-36 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+    <!-- Ambient Radial Glow -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-brand-green/10 blur-[130px] rounded-full pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      
+      <!-- Deriv Integration Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-surface border border-brand-border text-xs font-mono text-brand-green mb-8">
+        <span class="w-2 h-2 rounded-full bg-brand-green animate-pulse"></span>
+        DERIV OAUTH & WEBSOCKET V3 READY
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] max-w-5xl mx-auto">
+        DOLLAR PRINTER
+        <span class="block text-transparent bg-clip-text bg-gradient-to-r from-brand-green via-emerald-300 to-white mt-2">
+          Professional Deriv Bot Builder
+        </span>
+      </h1>
+
+      <p class="mt-6 text-slate-400 text-base sm:text-xl max-w-2xl mx-auto leading-relaxed">
+        Automate your binary options & synthetic indices trading. Build no-code Volatility algorithms, deploy high-frequency strategies, or copy verified profitable masters.
+      </p>
+
+      <!-- CTA Buttons Required -->
+      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#connect" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-green text-black font-extrabold text-base hover:bg-brand-greenHover glow-green transition duration-300 flex items-center justify-center gap-2">
+          <i class="fa-solid fa-bolt"></i> Connect Deriv Account
+        </a>
+        <a href="#features" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-card hover:bg-brand-surface border border-brand-border hover:border-brand-green text-white font-semibold text-base transition duration-300 flex items-center justify-center gap-2">
+          <i class="fa-solid fa-robot text-brand-green"></i> Get Free Bot
+        </a>
+      </div>
+
+      <!-- Key Performance Badges -->
+      <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-8 border-t border-brand-border/60">
+        <div>
+          <div class="text-2xl sm:text-3xl font-extrabold text-white font-mono">$4.8M+</div>
+          <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider">Monthly Vol Traded</div>
+        </div>
+        <div>
+          <div class="text-2xl sm:text-3xl font-extrabold text-brand-green font-mono">&lt; 45ms</div>
+          <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider">Deriv API Ping</div>
+        </div>
+        <div>
+          <div class="text-2xl sm:text-3xl font-extrabold text-white font-mono">19,500+</div>
+          <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider">Active Bots</div>
+        </div>
+        <div>
+          <div class="text-2xl sm:text-3xl font-extrabold text-brand-green font-mono">99.98%</div>
+          <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider">Server Uptime</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 3 CORE CARDS ================= -->
+  <section id="features" class="py-20 bg-brand-surface/40 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <h2 class="text-xs font-mono font-bold tracking-widest text-brand-green uppercase">Engineered for Profit</h2>
+        <p class="text-3xl sm:text-4xl font-extrabold mt-2">Next-Gen Trading Automation</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- CARD 1: Free Bots -->
+        <div class="bg-brand-card rounded-2xl p-8 border border-brand-border transition-all duration-300 glow-card flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-xl bg-brand-green/10 border border-brand-green/30 flex items-center justify-center text-brand-green text-2xl mb-6">
+              <i class="fa-solid fa-gift"></i>
+            </div>
+            <span class="text-xs font-mono uppercase px-2.5 py-1 rounded bg-brand-green/15 text-brand-green font-bold">Zero Cost</span>
+            <h3 class="text-2xl font-bold mt-4 mb-3">Free Bots</h3>
+            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+              Download instantly proven XML and DBot presets. Pre-configured for Even/Odd, Matches/Differs, and Over/Under on Volatility 75, 100 & Crash/Boom.
+            </p>
+            <ul class="space-y-2.5 text-xs text-slate-300 font-mono mb-8">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-green"></i> 1-Click DBot XML Import</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-green"></i> Built-in Martingale & Dalembert</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-green"></i> Safe Stake Auto-Calculators</li>
+            </ul>
+          </div>
+          <a href="#connect" class="w-full py-3 rounded-lg border border-brand-green/40 text-brand-green hover:bg-brand-green hover:text-black font-bold text-center text-sm transition">
+            Download Free XML Bots
+          </a>
+        </div>
+
+        <!-- CARD 2: Bot Builder (Featured) -->
+        <div class="bg-brand-card rounded-2xl p-8 border-2 border-brand-green/80 transition-all duration-300 glow-card flex flex-col justify-between relative shadow-[0_0_35px_rgba(0,229,153,0.15)]">
+          <div class="absolute -top-3.5 right-6 px-3 py-1 rounded-full bg-brand-green text-black font-extrabold text-[10px] uppercase tracking-wider">
+            Flagship Product
+          </div>
+          <div>
+            <div class="w-14 h-14 rounded-xl bg-brand-green text-black flex items-center justify-center text-2xl mb-6">
+              <i class="fa-solid fa-cubes"></i>
+            </div>
+            <span class="text-xs font-mono uppercase px-2.5 py-1 rounded bg-brand-green/15 text-brand-green font-bold">Visual Studio</span>
+            <h3 class="text-2xl font-bold mt-4 mb-3">Bot Builder</h3>
+            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+              Create sophisticated algorithmic triggers with our drag-and-drop rule engine. Combine RSI, Bollinger Bands, MACD, and custom tick pattern analyzers.
+            </p>
+            <ul class="space-y-2.5 text-xs text-slate-300 font-mono mb-8">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-green"></i> No Coding Knowledge Required</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-green"></i> Millisecond Execution Speed</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-green"></i> Backtesting Engine (50K Ticks)</li>
+            </ul>
+          </div>
+          <a href="#builder" class="w-full py-3 rounded-lg bg-brand-green hover:bg-brand-greenHover text-black font-extrabold text-center text-sm glow-green transition">
+            Launch Bot Studio
+          </a>
+        </div>
+
+        <!-- CARD 3: Copy Trading -->
+        <div class="bg-brand-card rounded-2xl p-8 border border-brand-border transition-all duration-300 glow-card flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-xl bg-brand-green/10 border border-brand-green/30 flex items-center justify-center text-brand-green text-2xl mb-6">
+              <i class="fa-solid fa-users-viewfinder"></i>
+            </div>
+            <span class="text-xs font-mono uppercase px-2.5 py-1 rounded bg-brand-green/15 text-brand-green font-bold">Passive Execution</span>
+            <h3 class="text-2xl font-bold mt-4 mb-3">Copy Trading</h3>
+            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+              Auto-mirror master Deriv traders in real-time. Link your Deriv API token, set maximum drawdowns and stake limits, and let the masters trade for you.
+            </p>
+            <ul class="space-y-2.5 text-xs text-slate-300 font-mono mb-8">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-green"></i> 100% Non-Custodial (Your API)</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-green"></i> Hard Stop-Loss Protection</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-green"></i> Transparent Win/Loss Track Records</li>
+            </ul>
+          </div>
+          <a href="#connect" class="w-full py-3 rounded-lg border border-brand-green/40 text-brand-green hover:bg-brand-green hover:text-black font-bold text-center text-sm transition">
+            Explore Master Traders
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LIVE RESULTS SECTION ================= -->
+  <section id="live-results" class="py-20 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-brand-green/10 text-brand-green font-mono text-xs mb-2">
+            <span class="w-2 h-2 rounded-full bg-brand-green animate-ping"></span> LIVE WEBSOCKET FEED
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold">Live Bot Execution Stream</h2>
+        </div>
+        <p class="text-slate-400 text-sm font-mono">Updated in real-time across active user bots</p>
+      </div>
+
+      <!-- Feed Container -->
+      <div class="bg-brand-card rounded-2xl border border-brand-border overflow-hidden shadow-2xl">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm font-mono">
+            <thead class="bg-brand-surface text-slate-400 uppercase text-xs border-b border-brand-border">
+              <tr>
+                <th class="px-6 py-4">Market / Asset</th>
+                <th class="px-6 py-4">Strategy / Bot</th>
+                <th class="px-6 py-4">Stake</th>
+                <th class="px-6 py-4">Payout</th>
+                <th class="px-6 py-4">Profit / Loss</th>
+                <th class="px-6 py-4 text-right">Time</th>
+              </tr>
+            </thead>
+            <tbody id="tradeTickerBody" class="divide-y divide-brand-border/40">
+              <!-- Dynamically populated via JavaScript for true live feeling -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TESTIMONIALS ================= -->
+  <section id="testimonials" class="py-20 bg-brand-surface/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <h2 class="text-xs font-mono font-bold tracking-widest text-brand-green uppercase">Verified Traders</h2>
+        <p class="text-3xl sm:text-4xl font-extrabold mt-2">What The Community Says</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <div class="bg-brand-card p-6 rounded-2xl border border-brand-border">
+          <div class="flex items-center gap-1 text-brand-green text-sm mb-4">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-slate-300 text-sm leading-relaxed mb-6">
+            "The Volatility 100 (1s) Tick Sniper generated +$1,240 in 3 days. The custom stop loss algorithm prevented blowout during high spikes."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-brand-green/20 border border-brand-green flex items-center justify-center font-bold text-brand-green text-sm">
+              MK
+            </div>
+            <div>
+              <div class="text-sm font-bold text-white">Martin Kiprono</div>
+              <div class="text-xs text-slate-400">Nairobi, Kenya • Deriv VIP</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-brand-card p-6 rounded-2xl border border-brand-border">
+          <div class="flex items-center gap-1 text-brand-green text-sm mb-4">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-slate-300 text-sm leading-relaxed mb-6">
+            "I used to copy random XML files from Telegram channels and blow accounts. Dollar Printer's builder lets me set strict loss tolerance."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-brand-green/20 border border-brand-green flex items-center justify-center font-bold text-brand-green text-sm">
+              OA
+            </div>
+            <div>
+              <div class="text-sm font-bold text-white">Oluwaseun A.</div>
+              <div class="text-xs text-slate-400">Lagos, Nigeria • Bot Builder User</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-brand-card p-6 rounded-2xl border border-brand-border">
+          <div class="flex items-center gap-1 text-brand-green text-sm mb-4">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-slate-300 text-sm leading-relaxed mb-6">
+            "Copy Trading is seamless. Setup took 90 seconds using my read-only Deriv API token. Hands down the cleanest Deriv software out there."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-brand-green/20 border border-brand-green flex items-center justify-center font-bold text-brand-green text-sm">
+              RL
+            </div>
+            <div>
+              <div class="text-sm font-bold text-white">Ricardo Lima</div>
+              <div class="text-xs text-slate-400">São Paulo, Brazil • Copy Trader</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PRICING ================= -->
+  <section id="pricing" class="py-20 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <h2 class="text-xs font-mono font-bold tracking-widest text-brand-green uppercase">Flexible Membership</h2>
+        <p class="text-3xl sm:text-4xl font-extrabold mt-2">Transparent Plans for Any Account Size</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Free Tier -->
+        <div class="bg-bran
